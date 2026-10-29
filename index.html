@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos Restaurante</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    .container{
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h1{
+      text-align: center;
+      color: #d35400;
+    }
+
+    .campo{
+      margin-bottom: 15px;
+    }
+
+    label{
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select{
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .producto{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+
+    .producto input{
+      width: 80px;
+    }
+
+    button{
+      width: 100%;
+      padding: 12px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover{
+      background: #219150;
+    }
+
+    #resultado{
+      margin-top: 20px;
+      padding: 15px;
+      background: #ecf0f1;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>🍽️ Pedido Restaurante</h1>
+
+  <div class="campo">
+    <label>Número de Mesa</label>
+    <select id="mesa">
+      <option>Mesa 1</option>
+      <option>Mesa 2</option>
+      <option>Mesa 3</option>
+      <option>Mesa 4</option>
+      <option>Mesa 5</option>
+      <option>Mesa 6</option>
+      <option>Mesa 7</option>
+      <option>Mesa 8</option>
+      <option>Mesa 9</option>
+      <option>Mesa 10</option>
+    </select>
+  </div>
+
+  <div class="campo">
+    <label>Cantidad de Personas</label>
+    <input type="number" id="personas" min="1" value="1">
+  </div>
+
+  <h2>Menú</h2>
+
+  <div class="producto">
+    <span>🍔 Hamburguesa (8€)</span>
+    <input type="number" id="hamburguesa" min="0" value="0">
+  </div>
+
+  <div class="producto">
+    <span>🌭 Bocadillo (5€)</span>
+    <input type="number" id="bocadillo" min="0" value="0">
+  </div>
+
+  <div class="producto">
+    <span>🍕 Pizza (10€)</span>
+    <input type="number" id="pizza" min="0" value="0">
+  </div>
+
+  <div class="producto">
+    <span>🥗 Ensalada (6€)</span>
+    <input type="number" id="ensalada" min="0" value="0">
+  </div>
+
+  <div class="producto">
+    <span>🥤 Refresco (2€)</span>
+    <input type="number" id="refresco" min="0" value="0">
+  </div>
+
+  <button onclick="realizarPedido()">Realizar Pedido</button>
+
+  <div id="resultado"></div>
+
+</div>
+
+<script>
+  function realizarPedido(){
+
+    let mesa = document.getElementById("mesa").value;
+    let personas = document.getElementById("personas").value;
+
+    let hamburguesa = parseInt(document.getElementById("hamburguesa").value);
+    let bocadillo = parseInt(document.getElementById("bocadillo").value);
+    let pizza = parseInt(document.getElementById("pizza").value);
+    let ensalada = parseInt(document.getElementById("ensalada").value);
+    let refresco = parseInt(document.getElementById("refresco").value);
+
+    let total =
+      hamburguesa * 8 +
+      bocadillo * 5 +
+      pizza * 10 +
+      ensalada * 6 +
+      refresco * 2;
+
+    document.getElementById("resultado").innerHTML = `
+        <h2>📋 Resumen del Pedido</h2>
+        <p><strong>Mesa:</strong> ${mesa}</p>
+        <p><strong>Personas:</strong> ${personas}</p>
+
+        <ul>
+            <li>🍔 Hamburguesas: ${hamburguesa}</li>
+            <li>🌭 Bocadillos: ${bocadillo}</li>
+            <li>🍕 Pizzas: ${pizza}</li>
+            <li>🥗 Ensaladas: ${ensalada}</li>
+            <li>🥤 Refrescos: ${refresco}</li>
+        </ul>
+
+        <h3>Total: ${total}€</h3>
+    `;
+  }
+</script>
+
+</body>
+</html>
